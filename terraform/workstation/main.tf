@@ -51,7 +51,7 @@ resource "google_storage_bucket_access_control" "workspace-bucket-rule" {
 }
 # startup script
 data "template_file" "vm_onboard" {
-  template = "${file("${path.root}/workspace/templates/onboard.sh")}"
+  template = "${file("${path.root}/workstation/templates/onboard.sh")}"
 
   vars = {
       #var = example
