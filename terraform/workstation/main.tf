@@ -108,7 +108,7 @@ resource "google_compute_instance" "vm_instance" {
   }
     service_account {
     # https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes
-    email = "${var.sa_name}"
+    #email = "${var.sa_name}"
     scopes = [ "storage-rw", "logging-write", "monitoring-write", "monitoring", "pubsub", "service-management" , "service-control" ]
     # scopes = [ "storage-ro"]
   }

@@ -1,10 +1,10 @@
 # device
-variable "sa_file" {
-  description = "service account creds for workspace tasks"
-}
-variable "sa_name" {
-  description = "service account name for workspace tasks"
-}
+# variable "sa_file" {
+#   description = "service account creds for workspace tasks"
+# }
+# variable "sa_name" {
+#   description = "service account name for workspace tasks"
+# }
 
 variable "projectPrefix" {
   description = "prefix for resources"
