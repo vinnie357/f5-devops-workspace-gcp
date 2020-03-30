@@ -45,7 +45,7 @@ resource "google_storage_bucket" "workspace-bucket" {
   }
 }
 resource "google_storage_bucket_access_control" "workspace-bucket-rule" {
-  bucket = google_storage_bucket.workspace-images.name
+  bucket = google_storage_bucket.workspace-bucket.name
   role   = "OWNER"
   entity = "user-${var.sa_name}"
 }

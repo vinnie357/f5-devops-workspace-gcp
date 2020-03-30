@@ -21,7 +21,7 @@ resource "google_compute_subnetwork" "vpc_network_mgmt_sub" {
 }
 # workspace machine
 module "workstation" {
-    
+
   source   = "./workstation"
   #======================#
   # application settings #
@@ -33,7 +33,7 @@ module "workstation" {
   gce_ssh_pub_key_file = "${var.gceSshPubKeyFile}"
   adminAccountName = "${var.adminAccount}"
   projectPrefix = "${var.projectPrefix}"
-  region = "${var.GCP_REGION}"
+  region = "${var.gcpRegion}"
   project = "${var.gcpProjectId}"
   buildSuffix = "-${random_pet.buildSuffix.id}"
 }
