@@ -34,21 +34,6 @@ resource "google_compute_firewall" "mgmt" {
 
   source_ranges = ["${var.adminSrcAddr}"]
 }
-# storage bucket
-resource "google_storage_bucket" "workspace-bucket" {
-  name     = "${var.projectPrefix}images-storage${var.buildSuffix}"
-  location = "US"
-
-  website {
-    main_page_suffix = "index.html"
-    not_found_page   = "404.html"
-  }
-}
-resource "google_storage_bucket_access_control" "workspace-bucket-rule" {
-  bucket = google_storage_bucket.workspace-bucket.name
-  role   = "OWNER"
-  entity = "user-${var.sa_name}"
-}
 # startup script
 data "template_file" "vm_onboard" {
   template = "${file("${path.root}/workstation/templates/onboard.sh")}"
