@@ -20,8 +20,8 @@ resource "google_compute_subnetwork" "vpc_network_mgmt_sub" {
 
 }
 # workspace machine
-module "workspace" {
-  source   = "./workspace"
+module "workstation" {
+  source   = "./workstation"
   #======================#
   # application settings #
   #======================#
