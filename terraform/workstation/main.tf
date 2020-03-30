@@ -1,6 +1,8 @@
 # firewall rules
 resource "google_compute_firewall" "default-allow-internal-mgmt" {
-  name    = "${var.projectPrefix}default-allow-internal-mgmt-firewall${var.buildSuffix}"
+  # terrafrom issue regex
+  #name    = "${var.projectPrefix}default-allow-internal-mgmt-firewall-${var.buildSuffix}"
+  name    = "${var.projectPrefix}default-allow-internal-mgmt-firewall"
   network = "${var.mgmt_vpc.name}"
 
   allow {
