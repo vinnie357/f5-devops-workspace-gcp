@@ -26,7 +26,7 @@ module "workstation" {
   #======================#
   # application settings #
   #======================#
-  name = "${var.appName}"
+  name = "workspace"
   adminSrcAddr = "${var.adminSrcAddr}"
   mgmt_vpc = "${google_compute_network.vpc_network_mgmt}"
   mgmt_subnet = "${google_compute_subnetwork.vpc_network_mgmt_sub}"
