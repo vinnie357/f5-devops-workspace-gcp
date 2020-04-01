@@ -44,6 +44,7 @@ data "template_file" "vm_onboard" {
     terraformVersion = "${var.terraformVersion}"
     terragruntVersion = "${var.terragruntVersion}"
     repositories = "${var.repositories}"
+    user = "${var.adminAccountName}"
   }
 }
 # disk
