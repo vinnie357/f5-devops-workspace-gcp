@@ -1,0 +1,26 @@
+# project prefix/tag for all object names
+projectPrefix = "user-build-gce-"
+# your json service account [ sensitive]
+serviceAccountFile = ""
+# the project ID you want to deploy in
+gcpProjectId = "" 
+# the gcp region you want to deploy in
+gcpRegion = "us-east1"
+# the gcp zone you want to deploy in
+gcpZone = "us-east1-b"
+# admin source address https://www.ipchicken.com/ with cidr mask ip/32
+adminSrcAddr = "myexternalip/32"
+# admin account name ( not admin)
+adminAccount = "myuser"
+#adminPass [ sensitive]
+adminPass = "MysuperPass"
+# contents of the admin ssh public key file [ sensitive]
+gceSshPubKeyFile = ""
+# number of running machines desired default is 1
+InstanceCount = 1
+# installed terraform version
+terraformVersion = "0.12.23"
+# version of terragrunt installed
+terragruntVersion = "0.23.4"
+#Comma seperated list of repositories to clone
+repositories = "https://github.com/f5devcentral/terraform-aws-f5-sca.git,https://github.com/f5devcentral/terraform-aws-bigip.git"

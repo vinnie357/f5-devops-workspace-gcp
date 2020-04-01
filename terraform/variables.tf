@@ -37,3 +37,14 @@ variable "gceSshPubKeyFile" {
 variable "serviceAccountFile" {
   description = "cloud service account json"
 }
+
+variable "terraformVersion" {
+  
+}
+variable "terragruntVersion" {
+  
+}
+
+variable "repositories" {
+
+}

@@ -10,26 +10,57 @@ else
 fi
 
 exec 1>$LOG_FILE 2>&1
+# repos"
+repositories="${repositories}"
+set -ex \
+&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
+&& sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+&& sudo apt-get update -y \
+&& sudo apt-get install -y apt-transport-https wget unzip jq git software-properties-common python3-pip ca-certificates gnupg-agent docker-ce docker-ce-cli containerd.io \
+&& echo "docker" \
+&& sudo usermod -aG docker ubuntu \
+&& sudo chown -R ubuntu: /var/run/docker.sock \
+&& echo "terraform" \
+&& sudo wget https://releases.hashicorp.com/terraform/${terraformVersion}/terraform_${terraformVersion}_linux_amd64.zip \
+&& sudo unzip ./terraform_${terraformVersion}_linux_amd64.zip -d /usr/local/bin/ \
+&& echo "f5 cli" \
+&& pip3 install f5-cli \
+&& echo "terragrunt" \
+&& sudo wget https://github.com/gruntwork-io/terragrunt/releases/download/v${terragruntVersion}/terragrunt_linux_amd64 \
+&& sudo mv ./terragrunt_linux_amd64 /usr/local/bin/terragrunt \
+&& sudo chmod +x /usr/local/bin/terragrunt \
+&& echo "chef Inspec" \
+&& curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec \
+&& echo "auto completion" \
+&& complete -C '/usr/bin/aws_completer' aws \
+&& terraform -install-autocomplete
 
-# install docker
-# install terraform locally
-# install ansible locally
-# tools
-# jq curl
-# xrdp install
-# vscode remote
-# install cloud shells
-# gcloud
-# azurecli
-# awscli
-# f5 cli
-# auto completes
-
-# ubuntu 18.04
-# terraform 12.23?
-# jq, curl
-# awscli
-# f5 cli
+echo "test tools"
+echo '# test tools' >>/home/ubuntu/.bashrc
+echo '/bin/bash /testTools.sh' >>/home/ubuntu/.bashrc
+cat > /testTools.sh <<EOF 
+#!/bin/bash
+echo "=====Installed Versions====="
+terraform -version
+echo "inspec:"
+inspec version
+terragrunt -version
+f5 --version
+echo "=====Installed Versions====="
+EOF
+echo "clone repositories"
+cwd=$(pwd)
+ifsDefault=$IFS
+IFS=','
+cd /home/ubuntu
+for repo in $repositories
+do
+    git clone $repo
+done
+IFS=$ifsDefault
+cd $cwd
+echo "=====done====="
+exit
 
 echo "=====done====="
 exit

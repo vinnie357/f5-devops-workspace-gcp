@@ -36,6 +36,9 @@ module "workstation" {
   region = "${var.gcpRegion}"
   project = "${var.gcpProjectId}"
   buildSuffix = "-${random_pet.buildSuffix.id}"
+  terraformVersion = "${var.terraformVersion}"
+  terragruntVersion = "${var.terragruntVersion}"
+  repositories = "${var.repositories}"
 }
 resource "random_pet" "buildSuffix" {
   keepers = {

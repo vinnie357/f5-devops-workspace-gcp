@@ -41,7 +41,9 @@ data "template_file" "vm_onboard" {
   template = "${file("${path.root}/workstation/templates/onboard.sh")}"
 
   vars = {
-      #var = example
+    terraformVersion = "${var.terraformVersion}"
+    terragruntVersion = "${var.terragruntVersion}"
+    repositories = "${var.repositories}"
   }
 }
 # disk
