@@ -1,17 +1,24 @@
 # gce-devops-workspace-tf-cloud
 On demand Workspace for Terraform and Ansible in Google Cloud Platform on Ubuntu
 
-# terraform cloud
-terraform cloud account
-# create project in terraform cloud
+# Prerequisites:
 
-# fork this repo for your edits and builds.
-link terraform cloud to the repo for githooks
+- ## Terraform Cloud
+    [Terraform Cloud Account](https://app.terraform.io/)
 
-# create gcp service account and key for terraform cloud
-login to gcp and issue a service account with permissions to your project
+- ## GCE service Account
+    [GCP Service account with key](https://console.cloud.google.com/iam-admin/serviceaccounts/)
 
-# set project variables for terraform cloud project
+# Overview:
+ 
+## Create project in Terraform Cloud
+## Create workspace in Terraform Cloud
+## Fork this repo for your edits and builds.
+## Link Terraform Cloud to the repo for githooks
+## Create gcp service account and key for Terraform Cloud
+ - login to gcp and issue a service account with permissions to your project
+
+## set project variables for Terraform Cloud project
 ! mark items as sensitive for write only access
 - projectPrefix
     - project prefix/tag for all object names
@@ -77,7 +84,7 @@ login to gcp and issue a service account with permissions to your project
         
         example: "https://github.com/f5devcentral/terraform-aws-f5-sca.git,https://github.com/f5devcentral/terraform-aws-bigip.git"
         
-# queue a run of the project
+## queue a run of the project
 
 
 ## Connect with VS Code Remote Development
