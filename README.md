@@ -78,3 +78,53 @@ login to gcp and issue a service account with permissions to your project
         example: "https://github.com/f5devcentral/terraform-aws-f5-sca.git,https://github.com/f5devcentral/terraform-aws-bigip.git"
         
 # queue a run of the project
+
+
+## Connect with VS Code Remote Development
+- https://code.visualstudio.com/docs/remote/remote-overview
+
+    Open Extensions menu: 
+
+    ![alt text][vscodeExtensions]
+
+    [vscodeExtensions]: images/vscodeExtensions.PNG "vscode extensions"
+
+    Add Remote Devpack Extensions: 
+
+    ![alt text][devPack]
+
+    [devPack]: images/remoteDevPack.PNG "Remote Dev Pack"
+
+    Configure Remote SSH extension: 
+
+    ![alt text][remoteExt] ![alt text][remoteConfig]
+
+    ![alt text][sshConfig]
+
+    [remoteExt]: images/remoteIcon.PNG "Remote SSH icon"
+
+    [remoteConfig]: images/remoteConfig.PNG "Remote SSH config"
+
+    [sshConfig]: images/sshConfigGCE.PNG "SSH config"
+
+## Optional Extensions
+- https://marketplace.visualstudio.com/items?itemName=mauve.terraform
+
+## Known issues
+- ssh ids on reapply
+    ```bash
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    ```
+    win:
+        
+        ssh-keygen -f "c:\\Users\\user/.ssh/known_hosts" -R 18.210.163.252
+    linux:
+
+        ssh-keygen -f "/root/.ssh/known_hosts" -R 18.210.163.252
+- VScode Remote
+     
+     settings
+     
+     extensions installed
