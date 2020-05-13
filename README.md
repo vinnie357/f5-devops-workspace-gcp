@@ -64,25 +64,14 @@ On demand Workspace for Terraform and Ansible in Google Cloud Platform on Ubuntu
         
         example: ""
 
-- InstanceCount
-    - number of running machines desired default is 1
-        
-         example: 1
-            
-- terraformVersion
-    - installed terraform version
-        
-        example: "0.12.23"
-        
-- terragruntVersion
-    - version of terragrunt installed
-        
-        example: "0.23.4"
-        
 - repositories
     - Comma seperated list of repositories to clone
         
         example: "https://github.com/f5devcentral/terraform-aws-f5-sca.git,https://github.com/f5devcentral/terraform-aws-bigip.git"
+- onboardScript
+    - url for onboard script
+
+        example: "https://raw.githubusercontent.com/vinnie357/workspace-onboard-bash-templates/master/terraform/gcp/sca/onboard.sh"
         
 ## queue a run of the project
 

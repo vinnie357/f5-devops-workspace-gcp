@@ -37,12 +37,14 @@ resource "google_compute_firewall" "mgmt" {
   source_ranges = ["${var.adminSrcAddr}"]
 }
 # startup script
+data "http" "template_onboard" {
+    url = var.onboardScript
+}
+
 data "template_file" "vm_onboard" {
-  template = "${file("${path.root}/workstation/templates/onboard.sh")}"
+  template = "${data.http.template_onboard.body}"
 
   vars = {
-    terraformVersion = "${var.terraformVersion}"
-    terragruntVersion = "${var.terragruntVersion}"
     repositories = "${var.repositories}"
     user = "${var.adminAccountName}"
   }

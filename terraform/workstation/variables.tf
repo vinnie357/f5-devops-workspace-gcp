@@ -5,7 +5,9 @@
 # variable "sa_name" {
 #   description = "service account name for workspace tasks"
 # }
-
+variable "onboardScript" {
+  description = "url for onboard script"
+}
 variable "projectPrefix" {
   description = "prefix for resources"
 }

@@ -38,13 +38,10 @@ variable "serviceAccountFile" {
   description = "cloud service account json"
 }
 
-variable "terraformVersion" {
-  
-}
-variable "terragruntVersion" {
-  
-}
-
 variable "repositories" {
+ description = "list of urls for repos" 
+}
 
+variable "onboardScript" {
+  description = "url for onboard script"
 }
