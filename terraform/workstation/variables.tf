@@ -64,12 +64,6 @@ variable "gce_ssh_pub_key_file" {
 variable "project" {
   default = "none"
 }
-variable "terraformVersion" {
-  
-}
-variable "terragruntVersion" {
-  
-}
 
 variable "repositories" {
 
