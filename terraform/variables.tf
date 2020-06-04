@@ -1,6 +1,7 @@
 #project
 variable projectPrefix {
     description = "prefix for resources"
+    default = "devops-tf-cloud-"
 }
 variable gcpProjectId {
   description = "project where resources are created"
@@ -8,9 +9,11 @@ variable gcpProjectId {
 # env
 variable gcpRegion {
   description = "default region"
+  default = "us-east1"
 }
 variable gcpZone {
   description = "default zone"
+  default = "us-east1-b"
 }
 variable gcpServiceAccounts {
   type = map
@@ -34,14 +37,15 @@ variable gceSshPubKeyFile {
   description = "ssh public key for instances"
 }
 
-variable serviceAccountFile {
-  description = "cloud service account json"
-}
-
 variable repositories {
  description = "list of urls for repos" 
 }
 
 variable onboardScript {
   description = "url for onboard script"
+}
+
+variable instanceType {
+    description = "gce machine type/size"
+    default = "n1-standard-4"
 }

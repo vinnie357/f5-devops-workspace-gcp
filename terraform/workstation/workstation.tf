@@ -68,7 +68,7 @@ resource google_compute_image workspace_image {
 resource google_compute_instance vm_instance {
   count            = var.vm_count
   name             = "${var.projectPrefix}${var.name}-${count.index + 1}-instance${var.buildSuffix}"
-  machine_type = var.MachineType
+  machine_type = var.machineType
   min_cpu_platform = "Intel Haswell"
   
   boot_disk {

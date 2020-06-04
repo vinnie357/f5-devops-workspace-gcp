@@ -35,7 +35,7 @@ variable deviceImage {
  default ="/projects/ubuntu-os-cloud/global/images/ubuntu-1804-bionic-v20200218"
 }
 
-variable MachineType {
+variable machineType {
     description = " gce machine type/size"
     default = "n1-standard-4"
     #default = "n1-standard-8"
