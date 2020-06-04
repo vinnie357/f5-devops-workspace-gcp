@@ -13,7 +13,7 @@ variable gcpZone {
   description = "default zone"
 }
 variable gcpServiceAccounts {
-  type = "map"
+  type = map
   default = {
       storage = "default-compute@developer.gserviceaccount.com"
       compute = "default-compute@developer.gserviceaccount.com"
