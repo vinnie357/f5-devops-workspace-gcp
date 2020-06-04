@@ -25,11 +25,6 @@ On demand Workspace for Terraform and Ansible in Google Cloud Platform on Ubuntu
     
         example: "mydeployment-"
 
-- serviceAccountFile
-    - your json service account [ sensitive]
-        
-        example: ""
-
 - gcpProjectId
     - the project ID you want to deploy in
         
@@ -72,7 +67,11 @@ On demand Workspace for Terraform and Ansible in Google Cloud Platform on Ubuntu
     - url for onboard script
 
         example: "https://raw.githubusercontent.com/vinnie357/workspace-onboard-bash-templates/master/terraform/gcp/sca/onboard.sh"
-        
+- instanceType
+    - gce machine type
+
+        example: "n1-standard-4"
+            
 ## queue a run of the project
 
 
