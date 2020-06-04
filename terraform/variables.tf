@@ -1,18 +1,18 @@
 #project
-variable "projectPrefix" {
+variable projectPrefix {
     description = "prefix for resources"
 }
-variable "gcpProjectId" {
+variable gcpProjectId {
   description = "project where resources are created"
 }
 # env
-variable "gcpRegion" {
+variable gcpRegion {
   description = "default region"
 }
-variable "gcpZone" {
+variable gcpZone {
   description = "default zone"
 }
-variable "gcpServiceAccounts" {
+variable gcpServiceAccounts {
   type = "map"
   default = {
       storage = "default-compute@developer.gserviceaccount.com"
@@ -20,28 +20,28 @@ variable "gcpServiceAccounts" {
     }
 }
 # admin 
-variable "adminSrcAddr" {
+variable adminSrcAddr {
   description = "admin source range in CIDR x.x.x.x/24"
 }
 
-variable "adminAccount" {
+variable adminAccount {
   description = "admin account name"
 }
-variable "adminPass" {
+variable adminPass {
   description = "admin account password"
 }
-variable "gceSshPubKeyFile" {
+variable gceSshPubKeyFile {
   description = "ssh public key for instances"
 }
 
-variable "serviceAccountFile" {
+variable serviceAccountFile {
   description = "cloud service account json"
 }
 
-variable "repositories" {
+variable repositories {
  description = "list of urls for repos" 
 }
 
-variable "onboardScript" {
+variable onboardScript {
   description = "url for onboard script"
 }

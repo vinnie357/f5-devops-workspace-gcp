@@ -1,9 +1,7 @@
 # firewall rules
-resource "google_compute_firewall" "default-allow-internal-mgmt" {
-  # terrafrom issue regex
-  #name    = "${var.projectPrefix}default-allow-internal-mgmt-firewall-${var.buildSuffix}"
+resource google_compute_firewall default-allow-internal-mgmt {
   name    = "${var.projectPrefix}default-allow-internal-mgmt-firewall"
-  network = "${var.mgmt_vpc.name}"
+  network = var.mgmt_vpc.name
 
   allow {
     protocol = "icmp"
@@ -21,9 +19,9 @@ resource "google_compute_firewall" "default-allow-internal-mgmt" {
 
   source_ranges = ["10.0.10.0/24"]
 }
-resource "google_compute_firewall" "mgmt" {
+resource google_compute_firewall mgmt {
   name    = "${var.projectPrefix}mgmt-firewall${var.buildSuffix}"
-  network = "${var.mgmt_vpc.name}"
+  network = var.mgmt_vpc.name
 
   allow {
     protocol = "icmp"
@@ -31,51 +29,51 @@ resource "google_compute_firewall" "mgmt" {
 
   allow {
     protocol = "tcp"
-    ports    = [ "22", "443"]
+    ports    = [ "22", "443", "80" ]
   }
 
-  source_ranges = ["${var.adminSrcAddr}"]
+  source_ranges = [var.adminSrcAddr]
 }
 # startup script
-data "http" "template_onboard" {
+data http template_onboard {
     url = var.onboardScript
 }
 
-data "template_file" "vm_onboard" {
-  template = "${data.http.template_onboard.body}"
+data template_file vm_onboard {
+  template = data.http.template_onboard.body
 
   vars = {
-    repositories = "${var.repositories}"
-    user = "${var.adminAccountName}"
+    repositories = var.repositories
+    user = var.adminAccountName
   }
 }
 # disk
-resource "google_compute_disk" "workspace_disk" {
+resource google_compute_disk workspace_disk {
   name  = "${var.projectPrefix}workspace-disk${var.buildSuffix}"
   type  = "pd-ssd"
-  image = "${var.deviceImage}"
+  image = var.deviceImage
   physical_block_size_bytes = 4096
   size = "20"
 }
-resource "google_compute_image" "workspace_image" {
+resource google_compute_image workspace_image {
   name = "${var.projectPrefix}workspace${var.buildSuffix}"
   family  = "ubuntu-1804-lts"
   disk_size_gb = "20"
-  project = "${var.project}"
+  project = var.project
   licenses = [ "/projects/vm-options/global/licenses/enable-vmx" ]
-  source_disk = "${google_compute_disk.workspace_disk.self_link}"
+  source_disk = google_compute_disk.workspace_disk.self_link
 }
 
 # GCE instance
-resource "google_compute_instance" "vm_instance" {
-  count            = "${var.vm_count}"
+resource google_compute_instance vm_instance {
+  count            = var.vm_count
   name             = "${var.projectPrefix}${var.name}-${count.index + 1}-instance${var.buildSuffix}"
-  machine_type = "${var.MachineType}"
+  machine_type = var.MachineType
   min_cpu_platform = "Intel Haswell"
   
   boot_disk {
     initialize_params {
-      image = "${google_compute_image.workspace_image.name}"
+      image = google_compute_image.workspace_image.name
     }
   }
   
@@ -87,13 +85,13 @@ resource "google_compute_instance" "vm_instance" {
     deviceId = "${count.index + 1}"
  }
  # this is best for dev, as it runs ANY time there are changes and DESTROYS the instances
-  metadata_startup_script = "${data.template_file.vm_onboard.rendered}"
+  metadata_startup_script = data.template_file.vm_onboard.rendered
 
   network_interface {
     # mgmt
     # A default network is created for all GCP projects
-    network       = "${var.mgmt_vpc.name}"
-    subnetwork = "${var.mgmt_subnet.name}"
+    network       = var.mgmt_vpc.name
+    subnetwork = var.mgmt_subnet.name
     # network = "${google_compute_network.vpc_network.self_link}"
     access_config {
     }

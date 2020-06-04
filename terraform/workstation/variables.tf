@@ -5,48 +5,48 @@
 # variable "sa_name" {
 #   description = "service account name for workspace tasks"
 # }
-variable "onboardScript" {
+variable onboardScript {
   description = "url for onboard script"
 }
-variable "projectPrefix" {
+variable projectPrefix {
   description = "prefix for resources"
 }
 
-variable "buildSuffix" {
+variable buildSuffix {
   description = "resource suffix"
 }
-variable "name" {
+variable name {
   description = "device name"
   default = "workspace"
 }
-variable "region" {
+variable region {
   description = "All resources will be launched in this region."
   default = "us-east1"
 }
 
-variable "mgmt_vpc" {
+variable mgmt_vpc {
   description = "main vpc"
 }
-variable "mgmt_subnet" {
+variable mgmt_subnet {
   description = "main vpc subnet"
 }
-variable "deviceImage" {
+variable deviceImage {
  description = "gce image name"
  default ="/projects/ubuntu-os-cloud/global/images/ubuntu-1804-bionic-v20200218"
 }
 
-variable "MachineType" {
+variable MachineType {
     description = " gce machine type/size"
     default = "n1-standard-4"
     #default = "n1-standard-8"
 }
 
-variable "vm_count" {
+variable vm_count {
     description = " number of devices"
     default = 1
 }
 
-variable "adminSrcAddr" {
+variable adminSrcAddr {
   description = "admin source range in CIDR"
 
 }
@@ -57,14 +57,14 @@ variable adminPass {
     description = "bigip admin password"
     default = "admin"
  }
-variable "gce_ssh_pub_key_file" {
+variable gce_ssh_pub_key_file {
     description = "path to public key for ssh access"
     default = "/root/.ssh/key.pub"
 }
-variable "project" {
+variable project {
   default = "none"
 }
 
-variable "repositories" {
+variable repositories {
 
 }

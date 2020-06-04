@@ -1,26 +1,26 @@
 # provider
-provider "google" {
-  credentials = "${var.serviceAccountFile}"
-  project     = "${var.gcpProjectId}"
-  region      = "${var.gcpRegion}"
-  zone        = "${var.gcpZone}"
+provider google {
+  credentials = var.serviceAccountFile
+  project     = var.gcpProjectId
+  region      = var.gcpRegion
+  zone        = var.gcpZone
 }
 
 # networks
-resource "google_compute_network" "vpc_network_mgmt" {
+resource google_compute_network vpc_network_mgmt {
   name                    = "${var.projectPrefix}terraform-network-mgmt-${random_pet.buildSuffix.id}"
   auto_create_subnetworks = "false"
   routing_mode = "REGIONAL"
 }
-resource "google_compute_subnetwork" "vpc_network_mgmt_sub" {
+resource google_compute_subnetwork vpc_network_mgmt_sub {
   name          = "${var.projectPrefix}mgmt-sub-${random_pet.buildSuffix.id}"
   ip_cidr_range = "10.0.10.0/24"
-  region        = "${var.gcpRegion}"
-  network       = "${google_compute_network.vpc_network_mgmt.self_link}"
+  region        = var.gcpRegion
+  network       = google_compute_network.vpc_network_mgmt.self_link
 
 }
 # workspace machine
-module "workstation" {
+module workstation {
 
   source   = "./workstation"
   #======================#
@@ -40,13 +40,11 @@ module "workstation" {
   onboardScript = "${var.onboardScript}"
 
 }
-resource "random_pet" "buildSuffix" {
+resource random_pet buildSuffix {
   keepers = {
-    # Generate a new pet name each time we switch to a new AMI id
-    #ami_id = "${var.ami_id}"
-    prefix = "${var.projectPrefix}"
+    prefix = var.projectPrefix
   }
   #length = ""
-  #prefix = "${var.projectPrefix}"
+  #prefix = var.projectPrefix
   separator = "-"
 }
