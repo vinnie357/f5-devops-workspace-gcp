@@ -32,7 +32,7 @@ variable mgmt_subnet {
 }
 variable deviceImage {
  description = "gce image name"
- default ="/projects/ubuntu-os-cloud/global/images/ubuntu-1804-bionic-v20200218"
+ default ="/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20200810"
 }
 
 variable machineType {
