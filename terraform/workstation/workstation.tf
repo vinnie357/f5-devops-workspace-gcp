@@ -57,7 +57,7 @@ resource google_compute_disk workspace_disk {
 }
 resource google_compute_image workspace_image {
   name = "${var.projectPrefix}workspace${var.buildSuffix}"
-  family  = "ubuntu-1804-lts"
+  family  = "ubuntu-2004-lts"
   disk_size_gb = "20"
   project = var.project
   licenses = [ "/projects/vm-options/global/licenses/enable-vmx" ]
